@@ -11,28 +11,32 @@ package org.example;
 6)Вывести на консоль покупки посетителей магазина. (После покупки у пользователя добавляется товар, а из магазина - удаляется)
  */
 
-import java.util.ArrayList;
-
 public class Main {
     public static void main(String[] args) {
 
+        // создать экземпляр магазина
         Store myStore = new Store();
 
+        // создать пользователей
         User user1 = new User();
         user1.setLogin("Иван");
         user1.setPassword("12345");
-
         Basket basket1 = new Basket();
         user1.setUserBasket(basket1);
 
         User user2 = new User();
         user2.setLogin("Светлана");
         user2.setPassword("qwerty");
+        Basket basket2 = new Basket();
+        user2.setUserBasket(basket2);
 
         User user3 = new User();
         user3.setLogin("Пётр");
         user3.setPassword("1q2w3e4r5t");
+        Basket basket3 = new Basket();
+        user3.setUserBasket(basket3);
 
+        // создать продукты и добавить их в магазин
         Product keyboard1 = new Product();
         keyboard1.setName("A4Tech Fstyler FBX51C");
         keyboard1.setPrice(2999.0);
@@ -116,6 +120,7 @@ public class Main {
         }
         System.out.println();
 
+        // пользователь 1 купил клавиатуру
         user1.buyProduct(keyboard1);
         myStore.deleteProduct(keyboard1);
 
@@ -133,7 +138,7 @@ public class Main {
         System.out.println("Список всех товаров категории клавиатура:");
         System.out.println("_______________________________________________________");
         for (Product myProduct: myStore.getStorage()) {
-            if (myProduct.getCategoryName() == "Клавиатура"){
+            if (myProduct.getCategoryName().equals("Клавиатура")){
                 System.out.println("Наименование: " + myProduct.getName() + ".");
                 System.out.println("Стоимость: " + myProduct.getPrice() + " руб.");
                 System.out.println("Рейтинг: " + myProduct.getRank() + ".");
